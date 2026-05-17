@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apotheken Schellenberger – Bingen & Münster-Sarmsheim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red:       #C0392B;
+    --red-deep:  #922B21;
+    --red-pale:  #FAEAEA;
+    --red-mid:   #E8A09A;
+    --gray-dark: #2C2C2C;
+    --gray:      #5A5A5A;
+    --gray-mid:  #909090;
+    --gray-light:#D8D8D8;
+    --gray-pale: #F4F4F4;
+    --white:     #FFFFFF;
+    --border:    rgba(0,0,0,0.1);
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans:  'Nunito Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background: var(--white); color: var(--gray-dark); line-height: 1.6; font-size: 15px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-light);
+    padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; height: 70px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-cross {
+    width: 34px; height: 34px; background: var(--red); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .nav-logo-cross svg { width: 20px; height: 20px; }
+  .nav-logo-text {
+    font-family: var(--font-serif); font-size: 1.15rem; font-weight: 400;
+    color: var(--gray-dark); letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 400; color: var(--gray);
+    text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+  .nav-cta {
+    background: var(--red); color: white !important;
+    padding: 8px 20px; border-radius: 4px;
+    font-size: 12.5px !important; font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--red-deep) !important; }
+
+  /* HERO */
+  .hero {
+    padding-top: 70px; min-height: 100vh;
+    display: grid; grid-template-columns: 55% 45%;
+    background: var(--white);
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 5rem; position: relative;
+  }
+  .hero-left::after {
+    content: ''; position: absolute; right: 0; top: 10%; bottom: 10%;
+    width: 1px; background: var(--gray-light);
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--red); display: block; }
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 4vw, 3.6rem);
+    font-weight: 400; line-height: 1.12; color: var(--gray-dark); margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; color: var(--red); }
+  .hero-desc {
+    font-size: 15px; color: var(--gray); line-height: 1.8; max-width: 420px; margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-logos {
+    display: flex; gap: 1.5rem; align-items: center; margin-bottom: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--gray-pale); border-radius: 8px;
+    border: 1px solid var(--gray-light);
+  }
+  .hero-logo-item {
+    display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1;
+  }
+  .hero-logo-item img {
+    height: 52px; width: auto; object-fit: contain;
+  }
+  .hero-logo-divider { width: 1px; height: 52px; background: var(--gray-light); flex-shrink: 0; }
+  .hero-logo-label { font-size: 11px; color: var(--gray); font-weight: 600; letter-spacing: 0.05em; text-align: center; }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary {
+    background: var(--red); color: white;
+    padding: 13px 30px; border-radius: 4px;
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    letter-spacing: 0.04em; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--red-deep); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--gray-dark); font-size: 13px; font-weight: 600;
+    text-decoration: none; display: flex; align-items: center; gap: 6px;
+    border: 1px solid var(--gray-light); padding: 12px 24px; border-radius: 4px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--red); color: var(--red); }
+
+  /* HERO RIGHT – team photo */
+  .hero-right {
+    position: relative; overflow: hidden; background: var(--gray-pale);
+  }
+  .hero-right img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .hero-right-fallback {
+    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(160deg, #f0f0f0, #e0e0e0);
+  }
+  .hero-badge {
+    position: absolute; bottom: 2rem; left: 2rem; right: 2rem;
+    background: rgba(255,255,255,0.95);
+    padding: 1rem 1.25rem; border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .hero-badge-label { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; margin-bottom: 3px; }
+  .hero-badge-time { font-family: var(--font-serif); font-size: 1rem; color: var(--gray-dark); }
+  .hero-badge-status { background: var(--red); color: white; font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 100px; letter-spacing: 0.05em; }
+
+  /* STRIP */
+  .strip {
+    background: var(--gray-dark); color: white;
+    padding: 1rem 5rem; display: flex; gap: 3rem; overflow-x: auto; align-items: center;
+  }
+  .strip-item { display: flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 13px; font-weight: 300; }
+  .strip-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+  /* SECTIONS */
+  section { padding: 5.5rem 5rem; }
+  .section-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--font-serif); font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+    font-weight: 400; color: var(--gray-dark); line-height: 1.15; margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; color: var(--red); }
+  .section-lead { font-size: 15px; color: var(--gray); max-width: 500px; line-height: 1.8; font-weight: 300; }
+
+  /* TEAM SECTION */
+  .team-section { background: var(--gray-pale); }
+  .team-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .team-photo {
+    border-radius: 8px; overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    aspect-ratio: 3/2;
+    background: var(--gray-light);
+  }
+  .team-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .team-text { }
+  .team-text p { font-size: 15px; color: var(--gray); line-height: 1.85; font-weight: 300; margin-bottom: 1.5rem; }
+  .team-names { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .team-name-pill {
+    background: white; border: 1px solid var(--gray-light);
+    color: var(--gray-dark); font-size: 12px; font-weight: 600;
+    padding: 5px 14px; border-radius: 100px;
+  }
+
+  /* SERVICES */
+  .services { background: var(--white); }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--gray-light); border-radius: 8px; overflow: hidden; }
+  .service-card {
+    padding: 2rem 1.75rem; border-right: 1px solid var(--gray-light);
+    text-decoration: none; color: inherit; display: block;
+    transition: background 0.2s;
+  }
+  .service-card:last-child { border-right: none; }
+  .service-card:nth-child(3) { border-right: none; }
+  .service-card:nth-child(4), .service-card:nth-child(5), .service-card:nth-child(6) {
+    border-top: 1px solid var(--gray-light);
+  }
+  .service-card:nth-child(6) { border-right: none; }
+  .service-card:hover { background: var(--red-pale); }
+  .service-icon {
+    width: 42px; height: 42px; background: var(--red-pale); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
+  }
+  .service-icon svg { width: 22px; height: 22px; stroke: var(--red); fill: none; stroke-width: 1.5; }
+  .service-card h3 { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 400; color: var(--gray-dark); margin-bottom: 0.5rem; }
+  .service-card p { font-size: 13.5px; color: var(--gray); line-height: 1.65; font-weight: 300; }
+
+  /* LOCATIONS */
+  .locations { background: var(--gray-pale); }
+  .locations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .location-card { background: var(--white); border-radius: 8px; overflow: hidden; border: 1px solid var(--gray-light); }
+  .location-card-header {
+    background: var(--gray-dark); padding: 2rem 2rem 1.5rem;
+    position: relative;
+  }
+  .location-card-header h3 { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 400; color: white; margin-bottom: 0.25rem; }
+  .location-address { font-size: 13px; color: rgba(255,255,255,0.55); font-weight: 300; }
+  .location-badge {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    background: var(--red); color: white; font-size: 10px; font-weight: 600;
+    padding: 4px 10px; border-radius: 100px; letter-spacing: 0.05em;
+  }
+  .location-body { padding: 1.5rem 2rem 2rem; }
+  .hours-grid { display: grid; grid-template-columns: auto 1fr; gap: 0; margin-bottom: 1.5rem; }
+  .hours-row { display: contents; }
+  .hours-row span { font-size: 13px; padding: 5px 0; border-bottom: 1px solid var(--gray-pale); }
+  .hours-row .day { color: var(--gray); font-weight: 300; padding-right: 1rem; }
+  .hours-row .time { color: var(--gray-dark); font-weight: 400; text-align: right; }
+  .location-tel {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13.5px; color: var(--red); text-decoration: none; font-weight: 600;
+    transition: color 0.2s;
+  }
+  .location-tel:hover { color: var(--red-deep); }
+
+  /* PRESCRIPTION */
+  .prescription {
+    background: var(--red); color: white; padding: 5rem;
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center;
+  }
+  .prescription .section-tag { color: rgba(255,255,255,0.6); }
+  .prescription .section-title { color: white; }
+  .prescription .section-lead { color: rgba(255,255,255,0.7); max-width: none; }
+  .rx-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .rx-card {
+    background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 1.5rem;
+    text-decoration: none; color: white;
+    transition: background 0.2s; display: block;
+  }
+  .rx-card:hover { background: rgba(0,0,0,0.25); }
+  .rx-card-icon { font-size: 1.4rem; margin-bottom: 0.75rem; }
+  .rx-card h4 { font-size: 13px; font-weight: 600; margin-bottom: 0.25rem; }
+  .rx-card p { font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 300; }
+  .rx-visual { display: flex; align-items: center; justify-content: center; }
+  .rx-phone {
+    width: 200px; height: 360px; background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 28px;
+    display: flex; flex-direction: column; padding: 1.5rem 1.25rem; gap: 0.75rem;
+  }
+  .rx-phone-bar { height: 4px; width: 40%; background: rgba(255,255,255,0.2); border-radius: 2px; align-self: center; margin-bottom: 0.5rem; }
+  .rx-phone-line { height: 36px; background: rgba(255,255,255,0.08); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); }
+  .rx-phone-btn { height: 42px; background: rgba(0,0,0,0.3); border-radius: 8px; margin-top: auto; display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; font-weight: 600; border: 1px solid rgba(255,255,255,0.2); }
+
+  /* APP SECTION */
+  .app-section { background: var(--gray-pale); padding: 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .app-section .section-tag { color: var(--red); }
+  .app-features { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .app-feat { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--gray); font-weight: 300; }
+  .app-feat::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+  .app-stores { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+  .store-btn {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--gray-dark); color: white;
+    padding: 10px 20px; border-radius: 6px;
+    text-decoration: none; font-size: 12.5px; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .store-btn:hover { background: var(--red); }
+  .store-btn svg { width: 20px; height: 20px; }
+  .app-visual { display: flex; justify-content: flex-end; }
+  .phone-mockup {
+    width: 210px; height: 390px; background: var(--gray-dark); border-radius: 32px;
+    border: 6px solid #1a1a1a; display: flex; flex-direction: column;
+    padding: 1.5rem 1rem; gap: 0.6rem;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+  }
+  .phone-notch { width: 60px; height: 14px; background: #111; border-radius: 7px; align-self: center; margin-bottom: 0.5rem; }
+  .phone-line { height: 28px; background: rgba(255,255,255,0.07); border-radius: 6px; }
+  .phone-accent { height: 28px; background: rgba(192,57,43,0.45); border-radius: 6px; }
+  .phone-img { height: 80px; background: rgba(192,57,43,0.3); border-radius: 8px; margin: 0.25rem 0; }
+  .phone-btn { height: 40px; background: var(--red); border-radius: 8px; margin-top: auto; }
+
+  /* CONTACT */
+  .contact { background: var(--white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; margin-top: 3rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.75rem; }
+  .contact-item label { font-size: 10.5px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 3px; }
+  .contact-item a, .contact-item p { font-size: 14.5px; color: var(--gray-dark); text-decoration: none; font-weight: 300; line-height: 1.5; }
+  .contact-item a:hover { color: var(--red); }
+  .contact-map {
+    background: var(--gray-pale); border-radius: 8px; height: 360px;
+    border: 1px solid var(--gray-light); display: flex; align-items: center; justify-content: center;
+  }
+  .map-inner { text-align: center; }
+  .map-inner p { font-size: 13px; color: var(--gray); margin: 0.5rem 0 1rem; font-weight: 300; }
+  .map-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--red); color: white; padding: 11px 22px; border-radius: 4px;
+    font-size: 12.5px; font-weight: 600; text-decoration: none; transition: background 0.2s;
+  }
+  .map-btn:hover { background: var(--red-deep); }
+
+  /* FOOTER */
+  footer { background: var(--gray-dark); color: rgba(255,255,255,0.45); padding: 2.5rem 5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+  .footer-brand { font-family: var(--font-serif); font-size: 1.05rem; color: rgba(255,255,255,0.7); }
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.8); }
+  .footer-copy { font-size: 12px; font-weight: 300; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left::after { display: none; }
+    .hero-right { height: 320px; }
+    .hero-left { padding: 3.5rem 2rem; }
+    section { padding: 4rem 2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { border-right: none !important; border-bottom: 1px solid var(--gray-light); }
+    .service-card:nth-child(4), .service-card:nth-child(5), .service-card:nth-child(6) { border-top: none; }
+    .locations-grid { grid-template-columns: 1fr; }
+    .services-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .team-inner { grid-template-columns: 1fr; }
+    .prescription { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+    .rx-visual { display: none; }
+    .app-section { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+    .app-visual { display: none; }
+    .contact-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; padding: 2rem 2rem; }
+    .strip { padding: 1rem 2rem; }
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-cross">
+      <svg viewBox="0 0 20 20" fill="none">
+        <rect x="8" y="2" width="4" height="16" rx="1" fill="white"/>
+        <rect x="2" y="8" width="16" height="4" rx="1" fill="white"/>
+      </svg>
+    </div>
+    <span class="nav-logo-text">Apotheken Schellenberger</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#standorte">Standorte</a></li>
+    <li><a href="#rezept">Rezept</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="tel:+496721995100" class="nav-cta">06721 / 99 51 00</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Ihre Apotheken in Bingen</div>
+    <h1 class="hero-title">
+      Gesundheit mit<br><em>persönlicher</em><br>Beratung
+    </h1>
+    <p class="hero-desc">
+      Zwei Standorte, ein Team. Wir begleiten Sie mit Fachkompetenz und Einfühlungsvermögen –
+      vor Ort, per Botendienst oder über unseren Online-Service.
+    </p>
+
+    <!-- Logos der beiden Apotheken -->
+    <div class="hero-logos">
+      <div class="hero-logo-item">
+        <img
+          src="https://mein-uploads.apocdn.net/38069/logo/Logos_AAR_NA_ohne%20Schrift%20%28f%C3%BCr%20SAM%29.png"
+          alt="Logo Apotheke am Römer und Nahe-Apotheke"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <div style="display:none; gap: 2rem; align-items: center;">
+          <!-- Fallback SVG-Logos -->
+          <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
+            <svg width="48" height="48" viewBox="0 0 48 48">
+              <rect width="48" height="48" rx="6" fill="#C0392B"/>
+              <rect x="20" y="8" width="8" height="32" rx="2" fill="white"/>
+              <rect x="8" y="20" width="32" height="8" rx="2" fill="white"/>
+            </svg>
+            <span style="font-size:9px; color:var(--gray); font-weight:600; letter-spacing:0.06em; text-align:center; text-transform:uppercase;">Apotheke<br>am Römer</span>
+          </div>
+          <div style="width:1px; height:52px; background:var(--gray-light);"></div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
+            <svg width="48" height="48" viewBox="0 0 48 48">
+              <rect width="48" height="48" rx="6" fill="#2C2C2C"/>
+              <rect x="20" y="8" width="8" height="32" rx="2" fill="white"/>
+              <rect x="8" y="20" width="32" height="8" rx="2" fill="white"/>
+            </svg>
+            <span style="font-size:9px; color:var(--gray); font-weight:600; letter-spacing:0.06em; text-align:center; text-transform:uppercase;">Nahe-<br>Apotheke</span>
+          </div>
+        </div>
+        <div class="hero-logo-label">Apotheke am Römer &amp; Nahe-Apotheke</div>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#rezept" class="btn-primary">Rezept vorbestellen</a>
+      <a href="#standorte" class="btn-ghost">Standorte</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <img
+      src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_2025-600%2C%20Team%28verkleinert%29@420-280-crop.webp"
+      alt="Das Team der Apotheken Schellenberger"
+      onerror="this.style.display='none'; this.parentElement.querySelector('.hero-right-fallback').style.display='flex';"
+    >
+    <div class="hero-right-fallback" style="display:none; position:absolute; inset:0; background: linear-gradient(160deg, #f0f0f0, #e0e0e0); align-items:center; justify-content:center;">
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+        <circle cx="40" cy="28" r="16" fill="#C0392B" opacity="0.15"/>
+        <path d="M10 68 C10 52 70 52 70 68" fill="#C0392B" opacity="0.1"/>
+        <circle cx="40" cy="28" r="12" fill="#C0392B" opacity="0.25"/>
+        <circle cx="40" cy="27" r="8" fill="#C0392B" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="hero-badge">
+      <div>
+        <div class="hero-badge-label">Apotheke am Römer – Heute</div>
+        <div class="hero-badge-time">08:00–13:00 · 14:00–18:30</div>
+      </div>
+      <div class="hero-badge-status">Geöffnet</div>
+    </div>
+  </div>
+</section>
+
+<!-- Strip -->
+<div class="strip">
+  <div class="strip-item"><span class="strip-dot"></span>E-Rezept einlösen</div>
+  <div class="strip-item"><span class="strip-dot"></span>Online-Shop verfügbar</div>
+  <div class="strip-item"><span class="strip-dot"></span>Botendienst täglich</div>
+  <div class="strip-item"><span class="strip-dot"></span>Tel. 06721 / 99 51 00</div>
+  <div class="strip-item"><span class="strip-dot"></span>2 Standorte in Bingen</div>
+  <div class="strip-item"><span class="strip-dot"></span>Abhol-Automat 24/7</div>
+</div>
+
+<!-- Team Section -->
+<section class="team-section" id="team">
+  <div class="team-inner">
+    <div class="team-photo">
+      <img
+        src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_2025-600%2C%20Team%28verkleinert%29@420-280-crop.webp"
+        alt="Das Team der Apotheken Schellenberger"
+        onerror="this.style.background='#e0e0e0'; this.style.minHeight='240px';"
+      >
+    </div>
+    <div class="team-text">
+      <div class="section-tag">Über uns</div>
+      <h2 class="section-title">Ein Team, das <em>für Sie da ist</em></h2>
+      <p>
+        Herzlich willkommen! Mit unseren zwei Standorten in Bingen und Münster-Sarmsheim sind wir Ihre kompetente Anlaufstelle für Gesundheit und Wohlbefinden.
+      </p>
+      <p>
+        Unser freundliches Team berät Sie individuell – bei Fragen zu Medikamenten, Naturheilkunde, Homöopathie oder Hilfsmitteln. Wir sind auch per WhatsApp unter 06721 / 99 51 00 erreichbar.
+      </p>
+      <div class="team-names">
+        <span class="team-name-pill">Niklas Schellenberger</span>
+        <span class="team-name-pill">Gernot Schellenberger</span>
+        <span class="team-name-pill">Marita Schellenberger</span>
+        <span class="team-name-pill">Andrea Geyer</span>
+        <span class="team-name-pill">Vera Kau</span>
+        <span class="team-name-pill">Hartmut Kunz</span>
+        <span class="team-name-pill">Sabine Ergezinger-Dettmeier</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services" id="leistungen">
+  <div class="services-header">
+    <div>
+      <div class="section-tag">Leistungen</div>
+      <h2 class="section-title">Was wir für Sie <em>tun</em></h2>
+      <p class="section-lead">Umfassende Betreuung weit über das bloße Ausgeben von Medikamenten hinaus.</p>
+    </div>
+    <a href="https://www.apotheke-am-roemer.de/services" class="btn-ghost" style="border-color: var(--gray-light);">Alle Leistungen →</a>
+  </div>
+  <div class="services-grid">
+    <a href="https://www.apotheke-am-roemer.de/rezept" class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      </div>
+      <h3>Rezeptservice</h3>
+      <p>Rezept fotografieren, hochladen oder per E-Rezept einlösen – wir bereiten alles vor, Sie holen es ab.</p>
+    </a>
+    <a href="https://www.apotheke-am-roemer.de/botendienst" class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <h3>Botendienst</h3>
+      <p>Medikamente werden noch am gleichen Tag zu Ihnen nach Hause geliefert – zuverlässig und diskret.</p>
+    </a>
+    <a href="https://www.apotheke-am-roemer.de/services" class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <h3>Individuelle Beratung</h3>
+      <p>Unser erfahrenes Team nimmt sich Zeit für Sie – bei Fragen zu Medikamenten, Wechselwirkungen und Gesundheitsthemen.</p>
+    </a>
+    <a href="https://www.apotheke-am-roemer.de/shop" class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61h9.72a2 2 0 001.98-1.61L23 6H6"/></svg>
+      </div>
+      <h3>Online-Shop</h3>
+      <p>Medikamente, Kosmetik und Gesundheitsprodukte bequem online bestellen und liefern lassen.</p>
+    </a>
+    <a href="https://www.apotheke-am-roemer.de/homoeopathie" class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+      </div>
+      <h3>Homöopathie & Phytotherapie</h3>
+      <p>Als einzige Apotheke in Bingen mit einer Phytothek sind wir Experten für pflanzliche und homöopathische Arzneimittel.</p>
+    </a>
+    <a href="https://www.apotheke-am-roemer.de/notdienst" class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h3>Notdienstinformationen</h3>
+      <p>Wir zeigen Ihnen, welche Apotheke in Ihrer Nähe aktuell Notdienst hat – schnell und unkompliziert.</p>
+    </a>
+  </div>
+</section>
+
+<!-- Locations -->
+<section class="locations" id="standorte">
+  <div class="section-tag">Standorte</div>
+  <h2 class="section-title">Unsere <em>zwei Apotheken</em></h2>
+  <p class="section-lead">Ob in Bingen oder Münster-Sarmsheim – wir sind nah bei Ihnen.</p>
+  <div class="locations-grid">
+    <div class="location-card">
+      <div class="location-card-header">
+        <div class="location-badge">Hauptstandort</div>
+        <h3>Apotheke am Römer</h3>
+        <div class="location-address">Saarlandstraße 121 · 55411 Bingen am Rhein</div>
+      </div>
+      <div class="location-body">
+        <div class="hours-grid">
+          <div class="hours-row"><span class="day">Montag – Freitag</span><span class="time">08:00–13:00 · 14:00–18:30</span></div>
+          <div class="hours-row"><span class="day">Samstag</span><span class="time">08:00–13:00</span></div>
+          <div class="hours-row"><span class="day">Sonntag</span><span class="time">Geschlossen</span></div>
+        </div>
+        <a href="tel:+496721995100" class="location-tel">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 013 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          06721 / 99 51 00
+        </a>
+      </div>
+    </div>
+    <div class="location-card">
+      <div class="location-card-header">
+        <div class="location-badge">Zweiter Standort</div>
+        <h3>Nahe-Apotheke</h3>
+        <div class="location-address">Münster-Sarmsheim</div>
+      </div>
+      <div class="location-body">
+        <div class="hours-grid">
+          <div class="hours-row"><span class="day">Mo, Di, Do, Fr</span><span class="time">08:30–13:00 · 14:00–18:30</span></div>
+          <div class="hours-row"><span class="day">Mittwoch</span><span class="time">08:30–13:00</span></div>
+          <div class="hours-row"><span class="day">Samstag</span><span class="time">08:30–12:30</span></div>
+        </div>
+        <a href="http://www.nahe-apotheke.de" target="_blank" class="location-tel">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          www.nahe-apotheke.de
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Prescription -->
+<section class="prescription" id="rezept" style="padding: 5rem;">
+  <div>
+    <div class="section-tag">Rezeptservice</div>
+    <h2 class="section-title">Rezept vorbestellen –<br><em>später abholen</em></h2>
+    <p class="section-lead">Sie übermitteln Ihr Rezept digital, wir bereiten alles vor. Kein Warten in der Schlange.</p>
+    <div class="rx-options">
+      <a href="https://www.apotheke-am-roemer.de/rezept#camera" class="rx-card">
+        <div class="rx-card-icon">📷</div>
+        <h4>Rezept fotografieren</h4>
+        <p>Einfach abfotografieren und direkt übermitteln</p>
+      </a>
+      <a href="https://www.apotheke-am-roemer.de/rezept#upload" class="rx-card">
+        <div class="rx-card-icon">🖼️</div>
+        <h4>Aus Galerie hochladen</h4>
+        <p>Bereits gespeichertes Foto hochladen</p>
+      </a>
+      <a href="https://www.apotheke-am-roemer.de/rezept#scan" class="rx-card">
+        <div class="rx-card-icon">📱</div>
+        <h4>E-Rezept scannen</h4>
+        <p>QR-Code des elektronischen Rezepts scannen</p>
+      </a>
+      <a href="https://www.apotheke-am-roemer.de/erezeptapp" class="rx-card">
+        <div class="rx-card-icon">💳</div>
+        <h4>Gesundheitskarte</h4>
+        <p>Per elektronischer Gesundheitskarte einlösen</p>
+      </a>
+    </div>
+  </div>
+  <div class="rx-visual">
+    <div class="rx-phone">
+      <div class="rx-phone-bar"></div>
+      <div class="rx-phone-line"></div>
+      <div class="rx-phone-line" style="width:75%;"></div>
+      <div class="rx-phone-line" style="height:70px;"></div>
+      <div class="rx-phone-line"></div>
+      <div class="rx-phone-line" style="width:60%;"></div>
+      <div class="rx-phone-btn">Rezept übermitteln →</div>
+    </div>
+  </div>
+</section>
+
+<!-- App -->
+<section class="app-section" style="padding: 5rem;">
+  <div>
+    <div class="section-tag">Mobile App</div>
+    <h2 class="section-title">Die Apotheke in<br><em>Ihrer Tasche</em></h2>
+    <p class="section-lead">Mit der kostenlosen Apotheken-App haben Sie alle Services immer dabei.</p>
+    <div class="app-features">
+      <div class="app-feat">E-Rezepte einreichen und verwalten</div>
+      <div class="app-feat">Medikamentenerinnerungen einrichten</div>
+      <div class="app-feat">Notdienstapotheke in der Nähe finden</div>
+      <div class="app-feat">Direktkontakt zur Apotheke</div>
+    </div>
+    <div class="app-stores">
+      <a href="https://itunes.apple.com/de/app/apothekenapp/id506362694" class="store-btn" target="_blank">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=de.apotheken.app&hl=de" class="store-btn" target="_blank">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l15 8.5c.6.34.6 1.26 0 1.6l-15 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+        Google Play
+      </a>
+    </div>
+    <p style="font-size: 12px; color: var(--gray); margin-top: 0.75rem; font-weight:300;">App installieren → PLZ „55411" eingeben → „Apotheken Schellenberger" auswählen</p>
+  </div>
+  <div class="app-visual">
+    <div class="phone-mockup">
+      <div class="phone-notch"></div>
+      <div class="phone-line"></div>
+      <div class="phone-line" style="width:70%;"></div>
+      <div class="phone-img"></div>
+      <div class="phone-accent"></div>
+      <div class="phone-line"></div>
+      <div class="phone-line" style="width:80%;"></div>
+      <div class="phone-btn"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="kontakt">
+  <div class="section-tag">Kontakt</div>
+  <h2 class="section-title">Sprechen Sie <em>mit uns</em></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <label>Inhaber</label>
+        <p>Niklas Schellenberger</p>
+      </div>
+      <div class="contact-item">
+        <label>Adresse</label>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Saarlandstra%C3%9Fe%20121%2C%2055411%20Bingen" target="_blank">
+          Saarlandstraße 121<br>55411 Bingen am Rhein
+        </a>
+      </div>
+      <div class="contact-item">
+        <label>Telefon</label>
+        <a href="tel:+496721995100">06721 / 99 51 00</a>
+      </div>
+      <div class="contact-item">
+        <label>Fax</label>
+        <p>06721 / 99 51 02</p>
+      </div>
+      <div class="contact-item">
+        <label>E-Mail</label>
+        <a href="mailto:team@apotheke-am-roemer.de">team@apotheke-am-roemer.de</a>
+      </div>
+      <div class="contact-item">
+        <label>Soziale Medien</label>
+        <div style="display:flex; gap:1rem; margin-top:4px;">
+          <a href="https://www.facebook.com/apothekeamroemer" target="_blank" style="color:var(--red);font-size:13px;text-decoration:none;font-weight:600;">Facebook</a>
+          <a href="https://www.instagram.com/apotheke_am_roemer/" target="_blank" style="color:var(--red);font-size:13px;text-decoration:none;font-weight:600;">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="contact-map">
+      <div class="map-inner">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <p>Saarlandstraße 121, 55411 Bingen am Rhein</p>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Apotheke%20am%20R%C3%B6mer&destination_place_id=ChIJA6Su0tDvvUcRwG7cbxlt7B0" target="_blank" class="map-btn">
+          In Google Maps öffnen
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-brand">Apotheken Schellenberger</div>
+  <div class="footer-links">
+    <a href="https://www.apotheke-am-roemer.de/impressum">Impressum</a>
+    <a href="https://www.apotheke-am-roemer.de/datenschutz">Datenschutz</a>
+    <a href="https://www.apotheke-am-roemer.de/agb">AGB</a>
+    <a href="https://www.apotheke-am-roemer.de/accessibilityreport">Barrierefreiheit</a>
+  </div>
+  <div class="footer-copy">© 2026 · Alle Preise inkl. MwSt.</div>
+</footer>
+
+</body>
+</html>
